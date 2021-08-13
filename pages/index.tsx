@@ -4,11 +4,16 @@ import type { NextPage } from 'next'
 import dynamic from 'next/dynamic'
 import { useUser } from 'reactfire'
 import 'firebase/auth'
+import SignIn from '../src/SignIn'
 
 const CurrentUser = () => {
   const { data: user } = useUser()
 
-  return <>currentUser: {JSON.stringify(user)}</>
+  if (!user) {
+    return null
+  }
+
+  return <>Hello, {user.displayName}</>
 }
 
 const Home: NextPage = () => {
@@ -16,6 +21,7 @@ const Home: NextPage = () => {
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <Suspense fallback={<>Loading...</>}>
         <CurrentUser />
+        <SignIn />
       </Suspense>
     </ErrorBoundary>
   )
