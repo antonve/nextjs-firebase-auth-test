@@ -17,7 +17,7 @@ const CurrentUser = () => {
     return <>Good evening anonymous user</>
   }
 
-  return <>Hello, {user.displayName}</>
+  return <>Hello, {user.email}</>
 }
 
 const Home: NextPage = () => {
