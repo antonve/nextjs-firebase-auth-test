@@ -17,21 +17,27 @@ function SignIn() {
   }
 
   if (isSignedIn) {
-    return (
-      <div>
-        <button
-          onClick={() => {
-            auth.signOut()
-            auth.signInAnonymously()
-          }}
-        >
-          Log out
-        </button>
-      </div>
-    )
+    return <LogOutButton />
   }
 
   return <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth} />
+}
+
+function LogOutButton() {
+  const auth = useAuth()
+
+  return (
+    <div>
+      <button
+        onClick={() => {
+          auth.signOut()
+          auth.signInAnonymously()
+        }}
+      >
+        Log out
+      </button>
+    </div>
+  )
 }
 
 export default SignIn
