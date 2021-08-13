@@ -2,7 +2,7 @@ import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
 import { useAuth, useSigninCheck } from 'reactfire'
 import useFirebaseUIConfig from './useFirebaseUIConfig'
 
-function SignIn() {
+function UserFlow() {
   const auth = useAuth()
   const uiConfig = useFirebaseUIConfig()
 
@@ -40,4 +40,4 @@ function LogOutButton() {
   )
 }
 
-export default SignIn
+export default UserFlow
