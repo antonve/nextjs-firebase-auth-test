@@ -1,28 +1,10 @@
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
 import { useAuth, useSigninCheck } from 'reactfire'
-import firebase from 'firebase'
+import useFirebaseUIConfig from './useFirebaseUIConfig'
 
 function SignIn() {
   const auth = useAuth()
-
-  const uiConfig = {
-    signInFlow: 'popup',
-    signInSuccessUrl: '/',
-    signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID],
-    autoUpgradeAnonymousUsers: true,
-    callbacks: {
-      signInFailure: (error: any) => {
-        if (error.code !== 'firebaseui/anonymous-upgrade-merge-conflict') {
-          return
-        }
-        const existingAccount = error.credential
-        const anonymousAccount = auth.currentUser
-
-        auth.signInWithCredential(existingAccount)
-        anonymousAccount?.delete()
-      },
-    },
-  }
+  const uiConfig = useFirebaseUIConfig()
 
   const { status, data: signInCheckResult } = useSigninCheck()
   const isSignedIn =
