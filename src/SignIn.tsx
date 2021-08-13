@@ -11,8 +11,12 @@ const uiConfig = {
 function SignIn() {
   const auth = useAuth()
   const { status, data: signInCheckResult } = useSigninCheck()
+  const isSignedIn =
+    signInCheckResult &&
+    signInCheckResult.signedIn === true &&
+    !signInCheckResult.user.isAnonymous
 
-  if (status === 'loading' || signInCheckResult.signedIn === true) {
+  if (status === 'loading' || isSignedIn) {
     return null
   }
 

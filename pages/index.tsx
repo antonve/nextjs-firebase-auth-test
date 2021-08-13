@@ -13,6 +13,10 @@ const CurrentUser = () => {
     return null
   }
 
+  if (user.isAnonymous) {
+    return <>Good evening anonymous user</>
+  }
+
   return <>Hello, {user.displayName}</>
 }
 
